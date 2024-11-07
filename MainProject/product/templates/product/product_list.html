@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for product in products %}
+
+    <h1> {{product.name}}</h1>
+    <img src="{{product.brand.logo.url}}" alt=""  height="50px">
+    <p>{{product.brand.name}}</p>
+    <p>{{product.description}}</p>
+
+
+   <button onclick="window.location='{% url 'product_details' product.id %}';" style="background-color: blue;">
+    View Details</button>
+
+
+{% endfor %}
+
+{% endblock %}

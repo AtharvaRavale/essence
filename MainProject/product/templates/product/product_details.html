@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{product.name}}
+{% endblock %}
+
+
+{% block content %}
+{% for image in images %}
+<img src="{{image.image.url}}" alt="image.product.name" height="500px" hover>
+{% endfor %}
+<p>{{product.name}}</p>
+<p>{{product.price_inclusive}}</p>
+
+<button 
+onclick="window.location='{% url 'update_product' product.id %}';" 
+style=
+"background-color:blue;" >
+    Update Product</button>
+
+
+
+<button 
+onclick="window.location='{% url 'delete_product' product.id %}';"
+ style="background-color: blue;">
+        Delete Product</button>
+
+{% endblock %}

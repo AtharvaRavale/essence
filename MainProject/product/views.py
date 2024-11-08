@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
-from .models import Brand
+from .models import Brand,Category
 # Create your views here.
 from .models import Product
 from .models import ProductImages
@@ -51,11 +51,13 @@ class AddProduct(View):
 
 def product_list(request):
         data=Product.objects.all()
+        categories = Category.objects.all()
         context={
-            'products':data
+            'products':data,
+            
         }
         print(data)
-        return render(request,'product/product_list.html',context)
+        return render(request,'product/shop.html',context)
 
 
 def product_details(request,id):

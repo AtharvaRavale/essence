@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class MyManager(models.Manager):
+    def my_query(self):
+        return self.all()
+
+
+
 # Create your models here.
 class Address(models.Model):
+    objects=MyManager()
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title=models.CharField(max_length=100)
     address_line1=models.CharField(max_length=100)

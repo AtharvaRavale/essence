@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 class MyManager(models.Manager):
     def my_query(self):
         return self.all()
+    def address(self):
+        return self.all().only('user','title')
+    def full_address(self):
+        return self.all()
 
 
 

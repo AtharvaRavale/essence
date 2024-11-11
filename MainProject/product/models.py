@@ -59,7 +59,7 @@ class Product(models.Model):
         return self.price_inclusive - self.price_exclusive
     
     def __str__(self):
-        return f'({self.name}) from {self.brand.name}'
+        return f'({self.name}) from {self.brand}'
     # image = models.ImageField(upload_to='products/')
     class Meta:
         db_table = 'Product'

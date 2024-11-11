@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.views import View
 from .forms import *
 from django.contrib import messages
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 
 def register(request):
     if request.method == 'GET':
@@ -97,3 +97,11 @@ class Login(View):
 
 
 
+
+
+
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')

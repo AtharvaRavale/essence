@@ -1,9 +1,6 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -11,65 +8,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Title  -->
-    <title>
+    <!-- Title  --> 
+     <title>
         Qubits|
-    {% block title %}
-        Home
-    {% endblock %}
-        </title>
-
-
+            {% block title %}
+                Home
+            {% endblock %}
+            </title>
+    <!-- <title>Essence - Fashion Ecommerce Template</title> -->
         <style>
+            .alert {
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
 
-
-            .alert{
-                padding: 15px;
-                margin:10px 0;
-                border-radius: 5px;
-                font-weight: bold;
-                font-size: 16px;
-            }
+                    /* Success message */
             .success {
-                background-color: #d4edda;
-                color: #155724;
-                border: 1px solid #c3e6cb;
-            }
-    
-            /* Error message */
-            .error {
-                background-color: #f8d7da;
-                color: #721c24;
-                border: 1px solid #f5c6cb;
-            }
-    
-            /* Warning message */
-            .warning {
-                background-color: #fff3cd;
-                color: #856404;
-                border: 1px solid #ffeeba;
-            }
-    
-            /* Info message */
-            .info {
-                background-color: #d1ecf1;
-                color: #0c5460;
-                border: 1px solid #bee5eb;
-            }
-    
+                        background-color: #d4edda;
+                        color: #155724;
+                        border: 1px solid #c3e6cb;
+                    }
+
+        /* Error message */
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Warning message */
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        /* Info message */
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
         {% block style %}
-        
+    
         {% endblock %}
-    
+
     </style>
-    
-    
+
+
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <!--<title>Essence - Fashion Ecommerce Template</title>-->
+
+
+
 
     <!-- Favicon  -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
-
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -102,9 +99,6 @@
                                 {{request.user}}
                                 {% endif %}
                             </li>
-
-
-
                             <li><a href="{% url '#' %}">Shop</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
@@ -146,11 +140,11 @@
                                     <li><a href="{% url 'single-blog' %}">Single Blog</a></li>
                                     <li><a href="{% url 'regular-page' %}">Regular Page</a></li>
                                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                                    <li><a  href="{% url 'brand_list' %}">Brands</a></li>
-                                    <li><a  href="{% url 'login' %}">Login </a></li>
-                                    <li><a  href="{% url 'register' %}">Register </a></li>
-                                    <li><a  href="{% url 'add_product' %}">Add Product </a></li>
-                                    <li><a  href="{% url 'product_list' %}">Products </a></li>
+                                    <li><a href="{% url 'brand_list' %}">Brands</a></li>
+                                    <li><a href="{% url 'login' %}">Login </a></li>
+                                    <li><a href="{% url 'register' %}">Register </a></li>
+                                    <li><a href="{% url 'add_product' %}">Add Product </a></li>
+                                    <li><a href="{% url 'product_list' %}">Products </a></li>
                             
                             
                                     <a class="nav-link " href="{% url 'add_product_with_django_form' %}"> Add Product with Django Form</a>
@@ -160,27 +154,35 @@
                             </li>
                             <li><a href="{% url 'blog' %}">Blog</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
+
+
+
                         </ul>
                     </div>
-                                        {% block messages %}
+                    {% block messages %}
                         {% if messages %}
-                        <ul style="width: 80%; z-index:3;" class="messages">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
-                            <button style="font-size:20px; float: right;" onclick="remove(event)  ">&#10008;</button>
-                        </li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
+                            <ul style="width: 80%; z-index: 3;" class="messages">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+                                        <button style="font-size:20px; float: right;" onclick="remove(event)">&#10008;</button>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     {% endblock %}
-                   
-
-                    <script>
-                        function remove(event)
-                        {
-                            event.target.parentElement.style.display = 'none';
-                        }
-                    </script>
+              
+                <script>
+                    function remove(event){
+                                event.target.parentElement.style.display = 'none'; }
+                </script>
+                
+                
                     <!-- Nav End -->
                 </div>
             </nav>
@@ -303,10 +305,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {% block content %}
-
     <h1>We are in Base .html</h1>
-
     {% endblock %}
 
 
@@ -319,6 +335,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -340,6 +379,10 @@
                                 <li><a href="{% url 'shop' %}">Shop</a></li>
                                 <li><a href="{% url 'blog' %}">Blog</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% endif %}
+
                             </ul>
                         </div>
                     </div>
@@ -415,15 +458,12 @@
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
 
-
+</script>
     <!-- Classy Nav js -->
     <script src="{% static 'js/classy-nav.min.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
 
-
-
-   
-
 </body>
+
 </html>

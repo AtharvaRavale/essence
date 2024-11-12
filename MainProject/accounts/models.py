@@ -25,6 +25,21 @@ class Address(models.Model):
 
 
 
+
+
+
+class MyManager(models.Manager):
+    def user_image(self):
+        return self.all().only('user','picture')
+    def full_details(self):
+        return self.all()
+    
+
+
+
+
+    
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='customer/profile/img')

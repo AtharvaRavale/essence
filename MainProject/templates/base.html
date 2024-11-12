@@ -76,6 +76,7 @@
 <body>
     <!-- ##### Header Area Start ##### -->
     <header class="header_area">
+        
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
@@ -204,10 +205,17 @@
                 <div class="user-login-info">
                     <a href="{% url '#' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
                 </div>
+                {% if request.user.is_authenticated %}
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="{% url '#' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
                 </div>
+                {% else %}
+                <div class="cart-area">
+                    <a href="{% url 'login' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                </div>
+                {% endif %}
+
             </div>
 
         </div>
@@ -458,11 +466,7 @@
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
 
-</script>
-    <!-- Classy Nav js -->
-    <script src="{% static 'js/classy-nav.min.js' %}"></script>
-    <!-- Active js -->
-    <script src="{% static 'js/active.js' %}"></script>
+   
 
 </body>
 

@@ -49,14 +49,40 @@ class AddProduct(View):
 
 
 
+def fetch_image_in_dictionary(image_obj,product_obj):
+     result =dict()
+     for image in image_obj:
+          if(len(result)==2):
+               break
+          if image.product.id==product_obj.id:
+               result[chr(65+len(result))]=image
+     return result
+          
+     
+
+
+
+
+
+
 def product_list(request):
-        data=Product.objects.all()
+        products_objects=Product.objects.all()
+        images=ProductImages.objects.all()
+        products=[]
+        for product_obj in products_objects:
+             image=fetch_image_in_dictionary(images,product_obj)
+             products.append({
+                  'details':product_obj,
+                  'images': image
+                   
+             })
+             
         categories = Category.objects.all()
-        context={
-            'products':data,
+        context ={
+            'products':products,
+            'categories':categories,
             
-        }
-        print(data)
+         }
         return render(request,'product/shop.html',context)
 
 

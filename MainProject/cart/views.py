@@ -16,9 +16,9 @@ def remove_from_cart(request,id):
     product_obj=get_object_or_404(Product,id=id)
     for item in cart_obj:
         if item.product.id==product_obj.id:
-            item.delete
-            return  redirect(request.path)
-    messages.error('Ther is no product to remoe from the cart')    
+            item.delete()
+            return redirect(request.META.get('HTTP_REFERER'))
+    messages.error(request,'Ther is no product to remoe from the cart')    
     return  redirect(request.path)
 
 
@@ -38,7 +38,7 @@ def update_cart(request):
         if product_quantity:
             item.quantity = product_quantity
             item.save()
-    return redirect(request.path)
+    return redirect(request.META.get('HTTP_REFERER'))
     
 
 

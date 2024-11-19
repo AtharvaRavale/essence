@@ -13,9 +13,9 @@ from django.contrib import messages
 def remove_from_cart(request,id):
     user_obj=get_object_or_404(User,username=request.user)
     cart_obj=Cart.objects.filter(user=user_obj)
-    product_obj=get_object_or_404(Product,id=id)
+    #product_obj=get_object_or_404(Product,id=id)
     for item in cart_obj:
-        if item.product.id==product_obj.id:
+        if item.id==id:
             item.delete()
             return redirect(request.META.get('HTTP_REFERER'))
     messages.error(request,'Ther is no product to remoe from the cart')    

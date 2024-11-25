@@ -25,6 +25,8 @@ urlpatterns = [
     path('product/',include('product.urls')),
     path('accounts/',include('accounts.urls')),
     path('order/',include('order.urls')),
+    path('payment/',include('payment.urls')),
+
     path('cart/',include('cart.urls')),
 
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Home page

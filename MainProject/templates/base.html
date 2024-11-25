@@ -231,7 +231,7 @@
             <!-- Cart List Area -->
             <div class="cart-list">
                 <!-- Single Cart Item -->
-                <form action="{% url 'update_cart' %}"></form>
+                 <form action="{% url 'update_cart' %}" method="get">
                 {% for item in cart_items %}
                     <div class="single-cart-item">
                         <a href="{% url 'product_details' item.product.id %}" class="product-image">
@@ -242,15 +242,15 @@
                             <a href="{% url 'remove_from_cart' item.product.id %}" class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></a>
                                 <span class="badge">{{item.product.brand.name}}</span>
                                 <h6>{{item.product.name}}</h6>
-                                <label for="{{item.product.id}}" >Quantity</label>
-                                <input type="number" name="{{item.product.id}}" value="{{item.product.quantity}}" id="">
-
+                                <label for="{{item.product.id}}">Quantity</label>
+                                <input type="number" name="{{item.product.product.id}}" value = "{{ item.product.quantity }}" id="">
                                 <p class="size">Quantity: {{ item.product.quantity }}</p>
                                 <p class="price">{{ item.product.product.price_inclusive }}</p>
                             </div>
                         
                     </div>
                 {% endfor %}
+              
             </div>
             <!-- Cart Summary -->
             <div class="cart-amount-summary">
@@ -266,14 +266,13 @@
                     <a href="{% url 'checkout' %}" class="btn essence-btn">check out</a>
                 </div>
                 <div class="checkout-btn mt-100">
-                    <input type="submit" value="Update Cart" class="btn essence-btn">
+                    <input type="submit" value="Update Cart">
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Right Side Cart End ##### -->
 </form>
-
+    <!-- ##### Right Side Cart End ##### -->
 {% endif %}
 
 
